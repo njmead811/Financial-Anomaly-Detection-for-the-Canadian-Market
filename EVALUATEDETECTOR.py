@@ -82,11 +82,10 @@ def find_extreme_graphs(title, values):
     ax.xaxis.set_major_locator(mdates.YearLocator())
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
     ax.set_ylim([0, 20])
-    extreme_event_dates = [('2007', '9'), ('2009', '1'), ('2011', '10'), ('2013', '4'), ('2015', '1'), ('2016', '2'), ('2020', '4')] 
-    # draw vertical lines to mark the extreme events 
+    # draw vertical lines to mark the extreme events. Need to alter CFSI to DJIA for US stocks 
     for i in range(len(extreme_event_dates_CFSI)):
     
-        curr_date = extreme_event_dates_CFSI[i][0] + '--' + extreme_event_dates[i][1]
+        curr_date = extreme_event_dates_CFSI[i][0] + '--' + extreme_event_dates_CFSI[i][1]
         ax.axvline(x= pd.Timestamp(curr_date), color='red', linestyle='--', linewidth=1, label=str(i))
         plt.text(pd.Timestamp(curr_date) + pd.DateOffset(months=2), 20, str(i+1), rotation=0, verticalalignment='top')
 
