@@ -106,7 +106,7 @@ def main():
     
     print("now loading the samples")
     # the array containing the graphs representing stock correlations
-    samples =  np.load("corr_matrices25(US).npy", allow_pickle=False) 
+    samples =  np.load("corr_matrices25(CAD).npy", allow_pickle=False) 
     Graphs = []
     for i in range(len(samples)):
         # remove the bias of the graph by removing self loops and threshholding the graph
@@ -124,8 +124,8 @@ def main():
     norms = [np.asarray(l1_norm), np.asarray(l2_norm)]
     for i in range(len(norms)):
         lof, mahalanobis = get_combined_anomalies(norms[i], 97.5)
-        np.save("LOF L" + str(i+1) + "PH_anomaliesUS(25).npy", np.asarray(lof))
-        np.save("Mahalanobis L" + str(i+1) + "_PH_anomaliesUS(25).npy", np.asarray(mahalanobis))
+        np.save("LOF_L" + str(i+1) + "PH(CAD).npy", np.asarray(lof))
+        np.save("Mah_L" + str(i+1) + "PH(CAD).npy", np.asarray(mahalanobis))
     
     # flatten the sammples array so it can be put into an ordinary classifier
     samples = samples.reshape(samples.shape[0], -1)
@@ -142,14 +142,14 @@ def main():
         pca_components = pca.fit_transform(samples_scaled)
         lof, mahalanobis = get_combined_anomalies(pca_components, 97.5)
         # save the anomalies for each method and each dimension in a different file
-        np.save("LOF PCA(dim=" + str(d) + ")_anomaliesUS(25).npy", np.asarray(lof))
-        np.save("Mahalanobis PCA(dim=" + str(d) + ")_anomaliesUS(25).npy", np.asarray(mahalanobis))
+        np.save("LOF_PCA(" + str(d) + ")(CAD).npy", np.asarray(lof))
+        np.save("Mah_PCA(" + str(d) + ")(CAD).npy", np.asarray(mahalanobis))
         
         
     # finally just put raw data into the anomaly detection methods
     lof, mahalanobis = get_combined_anomalies(samples_scaled, 97.5)
-    np.save("LOF_raw_anomaliesUS(25).npy", np.asarray(lof))
-    np.save("Mahalanobis_raw_anomaliesUS(25).npy", np.asarray(mahalanobis))
+    np.save("LOF_raw(CAD).npy", np.asarray(lof))
+    np.save("Mah_raw(CAD).npy", np.asarray(mahalanobis))
 
 
 
