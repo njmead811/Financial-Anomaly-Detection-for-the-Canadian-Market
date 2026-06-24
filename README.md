@@ -14,11 +14,11 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ## Methodology
 
-- [Construct correlation matrices](ca://s?q=Explain_sliding_window_correlation_matrices) — Construct correlation matrices for a sliding window of stock prices to capture how relationships between stocks change over time.
+- **Construct correlation matrices** — Construct correlation matrices for a sliding window of stock prices to capture how relationships between stocks change over time.
 
-- [Interpret as weighted graphs](ca://s?q=Explain_weighted_graph_construction) — Interpret correlation matrices as weighted graphs, where nodes are stocks and edges represent correlations.
+- **Interpret as weighted graphs** — Interpret correlation matrices as weighted graphs, where nodes are stocks and edges represent correlations.
 
-- [Reformulate as graph anomaly detection](ca://s?q=Explain_graph_anomaly_detection) — Reformulate the problem as a graph anomaly detection task, using graph neural networks and standard statistical baselines.
+  - **Reformulate as graph anomaly detection** — Reformulate the problem as a graph anomaly detection task, using graph neural networks and standard statistical baselines.
 
 
 ## Results
