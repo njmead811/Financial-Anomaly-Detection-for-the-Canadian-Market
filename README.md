@@ -29,7 +29,7 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ## Visualization of Results
 
-   **Figure 1:** Anomalies Detected by Different Methods (TSX-60)
+ <p align="center"><strong>Figure 1:</strong> Anomalies Detected by Different Methods (TSX-60)</p>)
 
 ![Anomalies Detected By Different Methods](TSX60-anomalies.png)
 
