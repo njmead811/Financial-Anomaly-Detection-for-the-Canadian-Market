@@ -1,9 +1,9 @@
 # Financial-Anomaly-Detection-for-the-Canadian-Market
 
 
-**Project Description**: Financial Anomaly Detection for the Canadian Market 
+**Project Description**: Financial Anomaly Detection for the Canadian Market   
 
-**Authors**: Nicholas Meadows and Luigi Caputi 
+**Authors**: Nicholas Meadows and Luigi Caputi     
 
 **Available at**: GitHub: njmead811/Financial-Anomaly-Detection-for-the-Canadian-Market; arXiv: 2604.02549.
 
