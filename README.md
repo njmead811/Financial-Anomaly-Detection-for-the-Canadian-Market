@@ -35,6 +35,9 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ![Anomalies Detected By Different Methods](TSX60-anomalies.png)
 
+<p align="center"><strong>Figure 2:</strong> Scores for Different Anomaly Detection Methods (TSX-60)</p>)
+
+![Anomalies Detected By Different Methods](RESULTTABLETSX60.png)
 
 
 ## How to Reproduce the Experiments 
