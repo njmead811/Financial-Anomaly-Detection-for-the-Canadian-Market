@@ -35,11 +35,7 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ![Anomalies Detected By Different Methods](TSX60-anomalies.png)
 
-<p align="center"><strong>Figure 2:</strong> Scores for Different Anomaly Detection Methods (TSX-60)</p>
-
-![Anomalies Detected By Different Methods](ResultTableTSX60.png)
-
-
+Monthly spikes reveal how each method flags abnormal behaviour, demonstrating their value for early detection of stress events. 
 ## How to Reproduce the Experiments 
 
 1. Run STOCKDATA.py to create correlation matrices for the stock prices
