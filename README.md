@@ -1,17 +1,9 @@
-
-
-### Business Motivation
-
-Periods of extreme market stress, such as the 1987 crash, the 2008 global financial crisis, and the COVID‑19 collapse, create significant risk for investors and institutions. Detecting early warning signs of these events is critical for risk management, portfolio hedging, and regulatory oversight.
-
-A recurring insight in financial research is that market instability often appears first as anomalies in the correlation structure between assets. When relationships between stocks shift abruptly, it can signal emerging systemic stress.
-
-This project builds a machine‑learning system to detect these structural anomalies in real time.
-
-### Methodology 
+# Financial-Anomaly-Detection-for-the-Canadian-Market
 
 
 
+This repository uses GNN and TDA based methods to detect financial stress events in the Canadian economy. It is the code for arxiv paper
+https://arxiv.org/pdf/2604.02549. The pipeline is described in more detail there 
 
 ### How to Reproduce the Experiments 
 
