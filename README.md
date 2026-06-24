@@ -7,7 +7,7 @@
 
 **Available at**: GitHub: njmead811/Financial-Anomaly-Detection-for-the-Canadian-Market; arXiv: 2604.02549.
 
-## Business Motivation 
+## Motivation 
 
 Stock market crashes, such as the October 1987 market crash, the 2008 financial crash, and more recently the financial crash caused by COVID19 are a source of considerable risk and profit for investors. Thus, understanding them theoretically and ultimately predicting them is of great importance and a source of theoretical research.
 
