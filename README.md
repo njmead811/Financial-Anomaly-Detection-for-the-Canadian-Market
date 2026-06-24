@@ -1,9 +1,9 @@
 # Financial-Anomaly-Detection-for-the-Canadian-Market
 
 
-Project Description: Financial Anomaly Detection for the Canadian Market 
-Principal Investigator: Nicholas Meadows 
-Available at: GitHub: njmead811/Financial-Anomaly-Detection-for-the-Canadian-Market; arXiv: 2604.02549.
+**Project Description**: Financial Anomaly Detection for the Canadian Market 
+**Principal Investigator**: Nicholas Meadows 
+**Available at**: GitHub: njmead811/Financial-Anomaly-Detection-for-the-Canadian-Market; arXiv: 2604.02549.
 
 ## Business Motivation 
 
@@ -18,17 +18,16 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 - **Interpret as weighted graphs** — Interpret correlation matrices as weighted graphs, where nodes are stocks and edges represent correlations.
 
-  - **Reformulate as graph anomaly detection** — Reformulate the problem as a graph anomaly detection task, using graph neural networks and standard statistical baselines.
+- **Reformulate as graph anomaly detection** — Reformulate the problem as a graph anomaly detection task, using graph neural networks, topological data analysis and standard statistical baselines.
 
 
 ## Results
 
-Both baseline and GNN methods successfully identified major financial crises, such as the 2008–2009 financial crisis, the Greek Debt Crisis, and COVID‑19.  
-Smaller crises were more effectively detected using graph‑based methods as opposed to baseline methods.
+- **Major crises detected** — Both baseline and GNN methods successfully identified major financial crises, such as 2008–2009, the Greek Debt Crisis, and COVID‑19.
+
+- **Improved detection of smaller events** — Smaller crises were more effectively detected using graph‑based methods as opposed to baseline methods.
 
 
-This repository uses GNN and TDA based methods to detect financial stress events in the Canadian economy. It is the code for arxiv paper
-https://arxiv.org/pdf/2604.02549. The pipeline is described in more detail there 
 
 ## How to Reproduce the Experiments 
 
