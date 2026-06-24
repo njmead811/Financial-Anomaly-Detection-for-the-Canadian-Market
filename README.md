@@ -27,6 +27,9 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 - **Improved detection of smaller events** — Smaller crises were more effectively detected using graph‑based methods as opposed to baseline methods.
 
+![Anomalies Detected By Different Methods](TSX60-anomalies.png)
+
+![Scores for Different Anomaly Detection Methods](ResultTableTSX60.png)
 
 
 ## How to Reproduce the Experiments 
