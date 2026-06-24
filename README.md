@@ -1,8 +1,11 @@
 # Financial-Anomaly-Detection-for-the-Canadian-Market
+
+
+
 This repository uses GNN and TDA based methods to detect financial stress events in the Canadian economy. It is the code for arxiv paper
 https://arxiv.org/pdf/2604.02549. The pipeline is described in more detail there 
 
-In order to run the experiments fully, complete the following steps.
+### How to Reproduce the Experiments 
 
 1. Run STOCKDATA.py to create correlation matrices for the stock prices
 2. Run GraphAnomalyDetection.ipynb and TDAPCAAnomalyDetection to obtain the anomaly scores for the graphs according to each different method.
