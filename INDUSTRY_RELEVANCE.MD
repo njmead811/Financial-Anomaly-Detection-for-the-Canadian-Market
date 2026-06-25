@@ -7,16 +7,16 @@ Financial institutions need early warning signals for market stress, credit dete
 ## Why This Matters
 
 - **Credit risk modeling**  
-  During credit deterioration, correlation matrices frequently spike, collapse, or reorganize. Detecting anomalies in these structures provides early warning signals for correlated defaults, sector‑level weakness, and systemic contagion.
+  During credit deterioration, correlation matrices frequently spike, collapse, or reorganize. Detecting anomalies in these structures provides early warning signals for correlated defaults, sector‑level weakness, and systemic contagion. Risk teams can use these anomaly scores to flag deteriorating sectors before spreads widen, improving monitoring and stress‑testing workflows.
 
 - **Fraud detection**  
-  Financial transactions naturally form graphs. Unusual subgraph patterns or structural anomalies can indicate fraudulent behavior, money‑laundering pathways, or abnormal transaction flows.
+  Financial transactions naturally form graphs. Unusual subgraph patterns or structural anomalies can indicate fraudulent behavior, money‑laundering pathways, or abnormal transaction flows. Surveillance teams can use these structural anomalies to prioritize investigations, reducing false positives and improving triage.
 
 - **Cybersecurity**  
-  Network traffic and system interactions can be represented as graphs. Anomaly detection on these graphs is used to identify malware propagation or abnormal communication patterns.
+  Network traffic and system interactions can be represented as graphs. Anomaly detection on these graphs is used to identify malware propagation or abnormal communication patterns. Security teams can integrate these signals into monitoring pipelines to detect emerging threats.
 
 - **Non‑stationary multivariate time‑series analysis**  
-  Many real‑world systems exhibit nonlinear, regime‑shifting behavior. The techniques used here generalize to any domain where structural breaks in correlated time‑series data matter (energy markets, supply chains, climate networks).
+  Many real‑world systems exhibit nonlinear, regime‑shifting behavior. The techniques used here generalize to any domain where structural breaks in correlated time‑series data matter (energy markets, supply chains, climate networks). Teams working with complex systems can use these methods to detect structural changes before they appear in traditional indicators.
 
 ---
 
