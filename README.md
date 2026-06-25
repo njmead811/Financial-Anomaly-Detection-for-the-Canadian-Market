@@ -14,6 +14,8 @@ Stock market crashes, such as the October 1987 market crash, the 2008 financial 
 A recurring idea in the literature is that early warning signs of financial stress or market collapse can be understood as outliers or anomalies in the structure of financial time series, especially how correlations between stocks behave during periods of stress. 
 These kinds of structural anomalies are also relevant to institutions that study credit risk, systemic risk, and portfolio‑level contagion, since shifts in market correlations often coincide with broader deterioration in credit conditions and correlated defaults.
 
+**See the companion document:** [Industry Relevance](Industry_Relevance.md) for the business context behind this project.
+
 ## Methodology
 
 - **Construct correlation matrices** — Construct correlation matrices for a sliding window of stock prices to capture how relationships between stocks change over time.
