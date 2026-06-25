@@ -16,7 +16,7 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ## Industry Relevance
 
-**See the companion document:** [Industry Relevance](INDUSTRY_RELEVANCE.md) for the business context behind this project.
+**See the companion document:** [Industry Relevance](INDUSTRY_RELEVANCE.MD) for the business context behind this project.
 
 ## Methodology
 
