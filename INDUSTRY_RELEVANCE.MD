@@ -1,6 +1,6 @@
 # Industry Relevance
 
-This project provides early detection of stress in financial markets by analyzing correlation structures and applying graph‑based anomaly detection. Correlation networks often reorganize or behave abnormally during periods of instability, making these methods valuable across several applied domains.
+Financial institutions need early warning signals for market stress, credit deterioration, and systemic risk. This project provides early detection of stress in financial markets by analyzing correlation structures and applying graph‑based anomaly detection. Correlation networks often reorganize or behave abnormally during periods of instability, making these methods valuable across several applied domains.
 
 ---
 
