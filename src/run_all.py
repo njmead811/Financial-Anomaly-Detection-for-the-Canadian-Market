@@ -4,12 +4,12 @@ import os
 os.system("src/preprocessing.py")
 
 # Step 2 — PCA + TDA anomalies
-os.system("src/pca_tda_anomalies.py")
+os.system("src/pca_tda_anomaly_scoring.py")
 
 # Step 3 — GNN notebook (produces saved files)
 os.system(
-    "jupyter nbconvert --to notebook --execute notebooks/gnn_anomalies.ipynb "
-    "--output notebooks/gnn_anomalies_output.ipynb"
+    "jupyter nbconvert --to notebook --execute notebooks/gnn_anomaly_scoring.ipynb "
+    "--output notebooks/gnn_anomaly_output.ipynb"
 )
 
 # Step 4 — Evaluation
