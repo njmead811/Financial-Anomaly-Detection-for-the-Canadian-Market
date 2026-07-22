@@ -43,10 +43,10 @@ window = 25
 time_series = []
 
 
-for t in tickersCAD:
+for t in tickersUS:
     print(t)
     # for the US stocks just use the ticker, for the Canadian stocks add the .TO suffix.
-    curr_data = yf.download(t + ".TO", start="2005-01-01", end="2022-1-01")
+    curr_data = yf.download(t, start="2005-01-01", end="2022-1-01")
     
     # if the data frames are empty skip this tickers
     if curr_data.empty:
@@ -92,6 +92,6 @@ for day in range(1, num_business_days-window, 1):
     print(corr_matrix)
     
 # save as a different file for the US and Canadian stocks. 
-np.save('corr_matrices25(CAD).npy', corr_matrices)
+np.save('data/preprocessed/corr_matrices25(US).npy', corr_matrices)
 
 
