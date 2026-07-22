@@ -34,7 +34,7 @@ tickersUS = {
     }
 
 # download the stock for TD as a reference for the number of business days in the period.
-td_data = yf.download("TD.TO", start="2005-01-01", end="2022-01-01")
+td_data = yf.download("BA", start="2005-01-01", end="2022-01-01")
 num_business_days = len(td_data.index)
 
 # the window that we will use for the CCM correlation. We will compute the correlation matrices for each day in the period, using the previous 25 days as the window.
