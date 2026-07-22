@@ -104,9 +104,13 @@ def get_combined_anomalies(samples, percent):
 
 def main():
     
+    
+
+def main():
+    
     print("now loading the samples")
     # the array containing the graphs representing stock correlations
-    samples =  np.load("corr_matrices25(CAD).npy", allow_pickle=False) 
+    samples =  np.load("data/preprocessed/corr_matrices25(US).npy", allow_pickle=False) 
     Graphs = []
     for i in range(len(samples)):
         # remove the bias of the graph by removing self loops and threshholding the graph
@@ -116,40 +120,50 @@ def main():
         G = nx.from_numpy_array(samples[i])
         Graphs.append(G)
     
-    
 
     # first we compute the persistent homology features of the graph and apply anomaly detection to l2, l2 norms of the persistence diagrams. 
     # We save the anomalies for each method and each norm in a different file.
+    
     l1_norm, l2_norm = compute_persistence_features(samples, 0.0, 1.0)
     norms = [np.asarray(l1_norm), np.asarray(l2_norm)]
     for i in range(len(norms)):
-        lof, mahalanobis = get_combined_anomalies(norms[i], 97.5)
-        np.save("LOF_L" + str(i+1) + "PH(CAD).npy", np.asarray(lof))
-        np.save("Mah_L" + str(i+1) + "PH(CAD).npy", np.asarray(mahalanobis))
+        lof, mahalanobis, isolation_forest = get_combined_anomalies(norms[i], 97.5)
+        np.save("data/anomalies/anomalies_tda_lof_l" + str(i+1) + "_us.npy", np.asarray(lof))
+        np.save("data/anomalies/anomalies_tda_mah_l" + str(i+1) + "_us.npy", np.asarray(mahalanobis))
     
-    # flatten the sammples array so it can be put into an ordinary classifier
-    samples = samples.reshape(samples.shape[0], -1)
-    # apply standard scaling to the samples
-    scaler = StandardScaler()
-    samples_scaled = scaler.fit_transform(samples)
     
-   
+    samples_reshaped = copy.deepcopy(samples)
+    samples_reshaped = samples_reshaped.reshape(samples_reshaped.shape[0], -1)
+    samples_scaled = StandardScaler().fit_transform(samples_reshaped)
+
+
+    samples = regularize_samples(samples, method='eigen', eps=1e-6)
+    
+    
     # use pca to reduce the dimensionality of the samples and then feed into anomaly detection methods
     reduced_dimensions = [10, 100]
+    
+
+
+
     for d in reduced_dimensions:
         
-        pca = PCA(n_components=d)
-        pca_components = pca.fit_transform(samples_scaled)
-        lof, mahalanobis = get_combined_anomalies(pca_components, 97.5)
-        # save the anomalies for each method and each dimension in a different file
-        np.save("LOF_PCA(" + str(d) + ")(CAD).npy", np.asarray(lof))
-        np.save("Mah_PCA(" + str(d) + ")(CAD).npy", np.asarray(mahalanobis))
+
+        pca2 = PCA(n_components=d)
+        pca_components_2 = pca2.fit_transform(samples_scaled)
+        lof_2, mahalanobis_2, iso_2  = get_combined_anomalies(pca_components_2, 97.5)
+        np.save("data/anomalies/anomalies_pca_lof_d" + str(d) + "_us.npy", lof_2)
+        np.save ("data/anomalies/anomalies_pca_mah_d" + str(d) + "_us.npy", mahalanobis_2) 
+    
+    lof_raw, mahalanobis_raw, iso_  = get_combined_anomalies(samples_reshaped, 97.5)
+    np.save("data/anomalies/anomalies_pca_lof_raw_us.npy", lof_raw)
+    np.save("data/anomalies/anomalies_pca_mah_raw_us.npy", mahalanobis_raw)
+    
+    
+    
+    
         
-        
-    # finally just put raw data into the anomaly detection methods
-    lof, mahalanobis = get_combined_anomalies(samples_scaled, 97.5)
-    np.save("LOF_raw(CAD).npy", np.asarray(lof))
-    np.save("Mah_raw(CAD).npy", np.asarray(mahalanobis))
+   
 
 
 
