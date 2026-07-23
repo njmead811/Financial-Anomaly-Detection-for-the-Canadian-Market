@@ -36,76 +36,6 @@ extreme_event_dates_CFSI = [('2007', '9'), ('2009', '1'), ('2011', '10'), ('2013
 extreme_event_dates_DJIA = [('2007', '10'), ('2008', '11'), ('2010', '6'), ('2011', '10'),
                                 ('2015', '9'), ('2018', '2'), ('2020', '4')]
 
-# We plot a graph of the number of anomalous graphs detected by each method over time, and mark the dates of extreme events on the plot.
-# values is the set of indices of the anomalous graphs detected by a method.
-def find_extreme_graphs(title, values):
-    
-    
-    
-   
-    # download the dates we use; this is the same as the dates available for the TD/BA stock. 
-    stock = yf.download("BA", start="2005-01-01", end="2022-01-01")
-    indices = stock.index
-    num_days = len(indices)
-    window = 25
-    m_yr = []
-    # num_days-window because we are looking at the number of anomalies per month, and we want to make sure that we have enough data points for each month.
-    for i in range(0, num_days-window, 1):
-        ts_str_1 = indices[i].strftime('%Y')
-        ts_str_2 = indices[i].strftime('%m')
-        curr_m_yr = int(ts_str_1)*100000 + int(ts_str_2)
-        m_yr.append(curr_m_yr)
-    m_yr = np.array(m_yr)
-    
-    # create an array of the same length as m_yr, where each entry is 1 if the corresponding graph is anomalous and 0 otherwise.
-    extr_val = np.zeros(m_yr.shape[0])
-    for i in range(len(values)):
-        if values[i] < m_yr.shape[0]:              # make sure that the index is within the range of m_yr
-            
-            
-            extr_val[values[i]] = 1
-    
-       
-    
-    data = np.column_stack([m_yr, extr_val])
-    # Create DataFrame to store the monthly number of anomalous graphs 
-    df = pd.DataFrame(data, columns=["Year-Month", "vals"])
-    grouped_df = df.groupby(["Year-Month"]).sum() 
-    values = grouped_df.values.flatten()
-    
-    
-    # Generate sample data
-    dates = pd.date_range(start="2005-01-01", end="2021-12-01", freq="ME")
-    
-    
-
-# Create a plot for anomalies over time
-    fig, ax = plt.subplots()
-    ax.plot(dates, values[0:len(dates)], color='blue', linewidth=1)
-    ax.xaxis.set_major_locator(mdates.YearLocator())
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
-    ax.set_ylim([0, 20])
-    # draw vertical lines to mark the extreme events 
-    for i in range(len(extreme_event_dates_CFSI)):
-    
-        curr_date = extreme_event_dates_CFSI[i][0] + '--' + extreme_event_dates_CFSI[i][1]
-        ax.axvline(x= pd.Timestamp(curr_date), color='red', linestyle='--', linewidth=1, label=str(i))
-        plt.text(pd.Timestamp(curr_date) + pd.DateOffset(months=2), 20, str(i+1), rotation=0, verticalalignment='top')
-
-
-    #ax.legend()
-    plt.gcf().autofmt_xdate()
-    plt.title("Graph Anomalies by Date")
-    plt.xlabel("Date")
-    plt.ylabel("Number of Anomalous Graphs")
-    plt.tight_layout()
-    plt.savefig(title + "Anomalies(CAD).png")
-    plt.show()
-
-import datetime as dt
-"""
-We evaluate the precision, recall and f1 score of a given method in predicting the extreme events. We consider a prediction to be correct if it is within 50 days of the actual extreme event.
-"""
 def evaluate_prediction(extreme_event_indices, indices):
     
     num_correct_predictions = 0
@@ -154,14 +84,14 @@ def evaluate_prediction_method(extreme_event_indices, values, method_name):
     best_recall = best_f1[0]
     best_precision = best_f1[1]
     # now we can plot the extreme graphs for the best recall and precision
-    find_extreme_graphs(method_name + " Best Precision", best_f1[3])
-    return best_recall, best_precision, best_f1[2]
+    #find_extreme_graphs(method_name + " Best Precision", best_f1[3])
+    return best_recall, best_precision, best_f1[2], best_f1[3]
 
 # get the indices of the dates of extreme events for CFSI in Canada 
 
 def get_extreme_indices(extreme_event_dates):
     # collect the indices of the dates of in the range of the extreme events; we use the stock data for BMO.TO to get the dates, since it has the same date range as the CFSI dataset for Canada.
-    stock = yf.download("BMO.TO", start="2005-01-01", end="2022-01-01")
+    stock = yf.download("BA", start="2005-01-01", end="2022-01-01")
     indices = stock.index
     indices = stock.index
     dates = []
@@ -188,71 +118,73 @@ def get_extreme_indices(extreme_event_dates):
 def main():
     
     # get the indices of extreme events. For US use extreme_event_dates_DJIA instead of extreme_event_dates_CFSI
-    extreme_event_indices = np.asarray(get_extreme_indices(extreme_event_dates_CFSI))
+    extreme_event_indices = np.asarray(get_extreme_indices(extreme_event_dates_DJIA))
     # load the values for the different methods
     print(extreme_event_indices)
+    
     # we load the values for the different methods; for the methods that have multiple hyperparameter, we evaluate the recall and precision for each hyperparameter and report the best one.
-    labels = ["GlocalKD (GINE)", "One-Shot GIN(E)", "LOF L1PH", "LOF L2PH", "MAH L1PH", "MAH L2PH", "LOF RAW", "MAH RAW", "LOF PCA (dim=10)", "MAH PCA (dim=10)", "LOF PCA (dim=100)", "MAH PCA (dim=100)"]
-    lof_l1 = np.load("LOF_L1PH(CAD).npy")
-    lof_l2 = np.load("LOF_L2PH(CAD).npy")
-    mah_l1 = np.load("Mah_L1PH(CAD).npy")
-    mah_l1 = mah_l1.reshape((1, mah_l1.shape[0]))
-    mah_l2 = np.load("Mah_L2PH(CAD).npy")
-    mah_l2 = mah_l2.reshape((1, mah_l2.shape[0]))
-    lof_raw = np.load("LOF_RAW(CAD).npy")
-    mah_raw = np.load("Mah_RAW(CAD).npy")
-    mah_raw = mah_raw.reshape((1, mah_raw.shape[0]))
-    lof_pca_10 = np.load("LOF_PCA(10)(CAD).npy")
-    mah_pca_10 = np.load("Mah_PCA(10)(CAD).npy")
-    mah_pca_10 = mah_pca_10.reshape((1, mah_pca_10.shape[0]))
-    lof_pca_100 = np.load("LOF_PCA(100)(CAD).npy")
-    mah_pca_100 = np.load("Mah_PCA(100)(CAD).npy")
-    mah_pca_100 = mah_pca_100.reshape((1, mah_pca_100.shape[0]))
     
-    one_shot = np.load("ONESHOTGIN(CAD).npy")
-    one_shot_mod = []
-    # sometimes the problem of hypersphere collapse occurs, where all the graphs are considered anomalous; in this case, 
-    # we consider the method to have failed and we do not include it in our evaluation. We check for this by looking at the number of anomalous graphs detected by the method;
-    #  if it is more than 107 (2.5 percent of the graphs), it is likely that the method has suffered from hypersphere inversion and 
-    #we do not include it in our evaluation.
-    for i in range(one_shot.shape[0]):
+    labels_nn = ["DIF", "OCGIN", "KDGIN", "OCGTL"]
+    filenames_nn = ["anomalies_gnn_dif_cad.npy", "anomalies_gnn_ocgin_cad.npy", "anomalies_gnn_kdgin_cad.npy", "anomalies_gnn_ocgtl_cad.npy" ]
+    
+    
+    
+    data_nn = []
+    for f in filenames_nn:
+        curr_nn_data = np.load(f)
+        curr_nn_data_mod = []
+        for i in range(curr_nn_data.shape[0]):
           
-          curr_ind = (np.where(one_shot[i] == 1)[0])
+          curr_ind = (np.where(curr_nn_data[i] == 1)[0])
           print(curr_ind.shape)
-          if curr_ind.shape[0] == 107:
-               one_shot_mod.append(curr_ind)
-               print(curr_ind.shape[0])
-    one_shot_mod = np.asarray(one_shot_mod)
-    # we apply the same procedure as for one-shot GIN(E) to GlocalKD (GINE), since it is also a GNN-based method and can also suffer from similar problems
-    kd = np.load("KDGIN(CAD).npy")
-    kd_mod = []
-    for i in range(kd.shape[0]):
+          #if curr_ind.shape[0] == 100:
+          curr_nn_data_mod.append(curr_ind)
           
-          curr_ind = (np.where(kd[i] == 1)[0])
-          print(curr_ind.shape)
-          if curr_ind.shape[0] == 107:
-               kd_mod.append(curr_ind)
-    kd_mod = np.asarray(kd_mod)
+          #else: 
+          #   print("Error")
+        data_nn.append(np.asarray(curr_nn_data_mod))
+    
+    
+    
+    
+
+    filenames_pca = ["anomalies_pca_lof_d10_cad", "anomalies_pca_lof_d100_cad", "anomalies_pca_lof_raw_cad",  "anomalies_pca_mah_d10_cad", "anomalies_pca_mah_d100_cad", "anomalies_pca_mah_raw_cad"]
+    
+    data_pca = [np.load(filenames_pca[i] + ".npy") for i in range(len(filenames_pca))]
+    for i in range(3, 6):
+        data_pca[i] = data_pca[i].reshape(1, -1)
+    data_pca = np.concatenate(data_pca)
+    print(data_pca.shape)
+    
+    filenames_tda = ["anomalies_tda_lof_l1_cad", 
+                    "anomalies_tda_mah_l1_cad", "anomalies_tda_lof_l2_cad", "anomalies_tda_mah_l2_cad"]
+    data_tda_l1 = np.concatenate([np.load(filenames_tda[0] + ".npy"), np.reshape(np.load(filenames_tda[1] + ".npy"), (1, -1))])
 
 
-    data = [kd_mod, one_shot_mod, lof_l1, lof_l2, mah_l1, mah_l2, lof_raw, mah_raw, lof_pca_10, mah_pca_10, lof_pca_100, mah_pca_100]
-    print(mah_raw)
+    data_tda_l2 = np.concatenate([np.load(filenames_tda[2] + ".npy"), np.reshape(np.load(filenames_tda[3] + ".npy"), (1, -1))])
+
     
-    # an array which saves the recall, precision and f1 score for each method; we will save this to a csv file at the end of our evaluation.
+    data = [data_pca, data_tda_l1, data_tda_l2] + data_nn
+    
+    labels = ["PCA", "TDA_L1", "TDA_L2"] + labels_nn
+   
     results = []
-    # here we evaluate each of the methods. 
+
+    rows = []
     for i in range(len(data)):
-        recall, precision, f1 = evaluate_prediction_method(extreme_event_indices, data[i], labels[i])
+        recall, precision, f1, row = evaluate_prediction_method(extreme_event_indices, data[i], labels[i])
         print(labels[i] + " Recall: " + str(recall))
         print(labels[i] + " Precision: " + str(precision))
         print(labels[i] + " F1 Score: " + str(f1))
         results.append([labels[i], round(recall, 2), round(precision, 2), round(f1, 2)])
+        rows.append(row[0:99])
     # create a dataframe to store the results
     df = pd.DataFrame(results, columns=["Method", "Recall", "Precision", "F1 Score"])
     # save the dataframe to a csv file
-    df.to_csv("results(CAD).csv", index=False)
+    df.to_csv("results-final(CAD).csv", index=False)
+    np.save("Anomalies.npy", np.vstack(rows))
     
-    
+
 
 
 if __name__=="__main__":
