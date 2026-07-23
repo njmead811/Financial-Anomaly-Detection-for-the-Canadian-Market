@@ -26,6 +26,7 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 - **Reformulate as graph anomaly detection** — Reformulate the problem as a graph anomaly detection task, using graph neural networks, topological data analysis and standard statistical baselines.
 
+## Full Pipeline
 
 ## Results
 
@@ -37,11 +38,11 @@ These kinds of structural anomalies are also relevant to institutions that study
 
  <p align="center"><strong>Figure 1:</strong> Anomalies Detected by Different Methods (TSX-60)</p>
 
-![Anomalies Detected By Different Methods](TSX60-anomalies.png)
+![Anomalies Detected By Different Methods](images/TSX60-anomalies.png)
 
 Monthly spikes reveal how each method flags abnormal behaviour, demonstrating their value for early detection of stress events.
 
  <p align="center"><strong>Figure 2:</strong> Evaluation of Different Methods (TSX-60)</p>
 
-![Scores of Different Methods](ResultTableTSX60.png)
+![Scores of Different Methods](images/ResultTableTSX60.png)
 
