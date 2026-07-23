@@ -28,7 +28,8 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ## Full Pipeline
 
-![Anomalies Detected By Different Methods](images/Full Pipeline.png)
+![Pipeline](images/Full Pipeline.png)
+
 ## Results
 
 - **Major crises detected** — Both baseline and GNN methods successfully identified major financial crises, such as 2008–2009, the Greek Debt Crisis, and COVID‑19.
