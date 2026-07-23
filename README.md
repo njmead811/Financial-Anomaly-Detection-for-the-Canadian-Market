@@ -28,7 +28,7 @@ These kinds of structural anomalies are also relevant to institutions that study
 
 ## Full Pipeline
 
-![Pipeline](images/TSX60-anomalies.png)
+![Pipeline](images/Full_Pipeline.png)
 
 ## Results
 
