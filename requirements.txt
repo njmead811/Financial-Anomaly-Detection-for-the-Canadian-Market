@@ -4,3 +4,4 @@ pandas
 yfinance
 matplotlib
 ipywidgets
+requests
