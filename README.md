@@ -50,4 +50,4 @@ Monthly spikes reveal how each method flags abnormal behaviour, demonstrating th
 
 ## Code Overview 
 
-The full pipeline is included for completeness, but it isn’t realistically runnable due to the size of the data and the compute required. This repository instead highlights a lightweight visualization notebook, notebooks/demos/Visualization.py, which loads pre‑computed results and presents the detected anomalies through interactive charts. To explore the findings, install the dependencies listed in requirements.txt and run Visualization.py.
+The full pipeline is included for completeness, but it isn’t realistically runnable due to the size of the data and the compute required. This repository instead highlights a lightweight visualization notebook, notebooks/demos/Visualization.ipynb, which loads pre‑computed results and presents the detected anomalies through interactive charts. To explore the findings, install the dependencies listed in requirements.txt and run Visualization.ipynb in jupyter or vscode. 
